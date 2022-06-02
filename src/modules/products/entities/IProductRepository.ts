@@ -1,17 +1,17 @@
 export type productCreate = {
     name: string,
     price: number,
-    categories: [number]
+    categories: number | []
 }
 
 export type productSave = {
-    id: string
+    id?: string
     name: string,
     price: number,
-    categories: [number],
+    categories?: number | [],
 }
 
 export interface IProductRepository {
     save(data: productCreate): Promise<productSave>
-    findById(id: string): Promise<productSave | undefined>
+    findByName(name: string): Promise<productSave | null>
 }
