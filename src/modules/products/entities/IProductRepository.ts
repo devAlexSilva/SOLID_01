@@ -1,14 +1,14 @@
 export type productCreate = {
     name: string,
     price: number,
-    categories: number | []
+    categories: number
 }
 
 export type productSave = {
-    id?: string
+    id: string
     name: string,
     price: number,
-    categories?: number | [],
+    categories?: Array<number>,
 }
 
 export interface IProductRepository {

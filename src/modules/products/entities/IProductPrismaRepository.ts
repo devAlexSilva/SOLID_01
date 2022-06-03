@@ -6,12 +6,33 @@ import { IProductRepository, productCreate, productSave } from "./IProductReposi
 // mudaremos essa interface mantendo a implementação da interface `IProductRepository`
 
 class ProductPrismaRepository implements IProductRepository {
-    save(data: productCreate): Promise<productSave> {
-        throw new Error("Method not implemented.");
+    async save(data: productCreate): Promise<productSave> {
+        const { name, price, categories } = data
+
+        const product = await prisma.product.create({
+            data: {
+                name,
+                price,
+                categories: {
+                    create: [
+                        {
+                            assignedAt: new Date(),
+                            category: {
+                                connect: {
+                                    id: categories
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        })
+        return product
     }
-    async findByName(id: string): Promise<productSave | null> {
+    
+    async findByName(name: string): Promise<productSave | null> {
         const product = await prisma.product.findFirst({
-            where: { id }
+            where: { name }
         })
         return product
     }

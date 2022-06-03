@@ -4,7 +4,7 @@ import { IProductRepository, productCreate } from "../entities/IProductRepositor
 class CreateProductService {
 
     constructor(private productRepository: IProductRepository) { }
-
+    
     async execute(data: productCreate) {
         const existsProduct = await this.productRepository.findByName(data.name)
 
@@ -15,7 +15,7 @@ class CreateProductService {
             return productCreated
         }
         catch (err) {
-            throw new Error('failed on create')
+            throw new Error(err+'failed on create')
         }
     }
 }
