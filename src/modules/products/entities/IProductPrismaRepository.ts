@@ -32,7 +32,11 @@ class ProductPrismaRepository implements IProductRepository {
     
     async findByName(name: string): Promise<productSave | null> {
         const product = await prisma.product.findFirst({
-            where: { name }
+            where: {
+                name: {
+                    contains: name
+                }
+            }
         })
         return product
     }
