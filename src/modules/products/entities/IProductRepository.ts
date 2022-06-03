@@ -13,5 +13,5 @@ export type productSave = {
 
 export interface IProductRepository {
     save(data: productCreate): Promise<productSave>
-    findByName(name: string): Promise<productSave | null>
+    findByName(name: string): Promise<Array<productSave> | null>
 }

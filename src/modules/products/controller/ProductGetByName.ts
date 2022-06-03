@@ -10,7 +10,6 @@ class ProductGetByNameController {
         const productQuery = new GetByNameProductService(repository)
 
         const { name } = req.params
-        console.log(name)
         const product = await productQuery.handle(name)
 
         return res.json(product)
