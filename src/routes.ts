@@ -8,7 +8,7 @@ const productCreate = new ProductCreateController()
 const productGetByName = new ProductGetByNameController()
 
 route.post('/products', productCreate.create)
-route.get('/products/:name', productGetByName.handle)
+route.get('/products', productGetByName.handle)
 
 
 export { route }
